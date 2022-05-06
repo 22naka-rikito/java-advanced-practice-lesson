@@ -2,7 +2,8 @@
   pageEncoding="UTF-8"%>
 <%
     // 必要な処理を記述してください。
-
+    
+	
 %>
 <!DOCTYPE html>
 <html>
