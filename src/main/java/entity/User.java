@@ -32,7 +32,7 @@ public class User {
      */
 	public String returnUserInfo() {
 		String str;
-		str = "ユーザーID:" + userId + "ユーザー名:" + userName + "年齢:" + age;
+		str = "ユーザーID:" + userId + "、ユーザー名:" + userName + "、年齢:" + age;
 		return str;
 	}
 }

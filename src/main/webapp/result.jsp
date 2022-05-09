@@ -8,19 +8,30 @@ date[0] = request.getParameter("userId");
 date[1] = request.getParameter("userName");
 date[2] = request.getParameter("age");
 
+User user;
 User users[] = new User[5];
 
 if(session.getAttribute("array") == null){
-	users[0] = new User(date[0],date[1],Integer.parseInt(date[2]));
 	session.setAttribute("array",users);
-}else{
-	users = (User[])session.getAttribute("array");
-	if(int i = 0; i < 5; i++){
-		
+	out.println("aaa");
+}
+
+String result = "";
+
+user = new User(date[0],date[1],Integer.parseInt(date[2]));
+users = (User[])session.getAttribute("array");
+
+for (int i = 0; i < 5; i++){
+	if(users[i] == null){
+		users[i] = user;
+		result = "ユーザーを登録しました";
+		break;
+	}else{
+		result = "これ以上ユーザーを登録できません";
 	}
 }
 
-String result = "ユーザーを登録しました。";
+
 %>
 <!DOCTYPE html>
 <html>
@@ -65,19 +76,21 @@ a.button {
 
 		<%
 		// 現在のユーザー情報を表示
-		/*for (User tempUser : users) {
+		for (User tempUser : users) {
 			if (tempUser != null) {
 				// ユーザー情報を取得
 				// todo:
 				// 現在は変数のみ定義している。
 				// Userクラスの情報取得用メソッドを呼んだ値をセットするように修正。
-				String msg = "";
+				String msg = tempUser.returnUserInfo();
+// 				String str = tempUser.returnUserInfo();
+// 				out.println(str + "<br>");
 
 				// ユーザー情報表示
 				out.println(msg);
 				out.println("<br>");
 			}
-		}*/
+		}
 		%>
 	</p>
 
