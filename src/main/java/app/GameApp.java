@@ -1,7 +1,7 @@
 package app;
 
 public class GameApp {
-	String item;
+	String item = "何か";
 	
 	public GameApp() {
 		
