@@ -10,14 +10,12 @@ body {
     border: solid 2px #000080;
     padding: 5px;
 }
-
 .result {
     background: #fffacd;
     display: inline-block;
     margin: 5px;
     padding: 10px;
 }
-
 a.button {
     background-color: #ddeeff;
     border: 1px solid #ccc;

@@ -40,21 +40,42 @@ public class InputServlet extends HttpServlet {
             throws ServletException, IOException {
         
     	// ここに必要な処理を記述してください。
-    	String msg;
+    	request.setCharacterEncoding("UTF-8");
+    	String info = "";
     	String btn = request.getParameter("btn");
     	String birthPlace = request.getParameter("birthPlace");
+    	
+    	String name = request.getParameter("name");
+    	String language = request.getParameter("language");
     	
     	if(btn.equals("simple")) {
     		if(birthPlace.equals("japan")) {
     			Japanes human = new Japanes();
-    			msg = human.returnHumanInfo();
+    			info = human.returnHumanInfo();
+    			info += "、日本の公用語は「日本語」です。";
     		}else if(birthPlace.equals("america")) {
     			American human = new American();
-    			msg = human.returnHumanInfo();
+    			info = human.returnHumanInfo();
+    			info += "、アメリカの公用語は「英語」です。";
     		}else {
-    			
+    			Human human = new Human();
+    			info = human.returnHumanInfo();
+    		}
+    	}else {
+    		if(birthPlace.equals("japan")) {
+    			Japanes human = new Japanes(name,language);
+    			info = human.returnHumanInfo();
+    			info += "、日本の公用語は「日本語」です。";
+    		}else if(birthPlace.equals("america")) {
+    			American human = new American(name,language);
+    			info = human.returnHumanInfo();
+    			info += "、アメリカの公用語は「英語」です。";
+    		}else {
+    			Human human = new Human(name,language);
+    			info = human.returnHumanInfo();
     		}
     	}
+    	request.setAttribute("info", info);
 
         // 結果画面へ
         request.getRequestDispatcher("result.jsp").forward(request, response);
