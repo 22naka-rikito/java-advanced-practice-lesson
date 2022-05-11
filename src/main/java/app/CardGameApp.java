@@ -1,6 +1,7 @@
 package app;
 
 public class CardGameApp extends GameApp{
+	
 	public CardGameApp() {
 		super();
 	}
@@ -10,9 +11,7 @@ public class CardGameApp extends GameApp{
 	}
 	
 	@Override
-	public String start(String name) {
-		String str = name + "さんと" + super.item + "でゲームを開始します。<br>";
-		str += "ババ抜きを行います。";
-		return str;
+	public String play() {
+		return "ババ抜きを行います。";
 	}
 }

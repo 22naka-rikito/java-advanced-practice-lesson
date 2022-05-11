@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import app.CardGameApp;
+import app.ClockApp;
+import app.DartsGameApp;
 import app.GameApp;
 
 /**
@@ -43,20 +45,25 @@ public class StartAppServlet extends HttpServlet {
 	    String itemStr = "";
 	    String result = "";
 	    
-	    
 	    if("card".equals(item)) {
-	    	itemStr = "トランプ";
+	    	itemStr = "トラン";
+	    }else if("darts".equals(item)) {
+	    	itemStr = "ダーツ";
 	    }
-	    GameApp gameApp = new GameApp("何か");
-	    CardGameApp cardgameApp = new CardGameApp(itemStr);
-
+	    
+	    GameApp cardGameApp = new CardGameApp(itemStr);
+	    GameApp dartsGameApp = new DartsGameApp(itemStr);
+	    ClockApp clockApp = new ClockApp();
+	    
 	    if (name != null && !name.isEmpty()) {
-	    	// このif分の中で、GameAppクラスのstartメソッドを呼び出し、
-	    	// 戻り値をresultに代入してください。
 	    	if(item.equals("card")) {
-	    		result = cardgameApp.start(name);
+	    		result = cardGameApp.start(name);
+		    }else if(item.equals("darts")) {
+		    	result = dartsGameApp.start(name);
+		    }else if(item.equals("clock")) {
+		    	result = clockApp.start(name);
 		    }else {
-		    	result = gameApp.start(name);
+		    	result = "アプリの実行に失敗しました。";
 		    }
 	    	
 	    }

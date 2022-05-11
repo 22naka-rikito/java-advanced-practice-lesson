@@ -1,7 +1,7 @@
 package app;
 
-public class GameApp {
-	String item = "何か";
+public abstract class GameApp implements App{
+	String item;
 	
 	public GameApp() {
 		
@@ -11,8 +11,11 @@ public class GameApp {
 		this.item = item;
 	}
 	
+	public abstract String play();
+	
 	public String start(String name) {
 		String str = name + "さんと" + this.item + "でゲームを開始します。";
+		str += play();
 		return str;
 	}
 }
