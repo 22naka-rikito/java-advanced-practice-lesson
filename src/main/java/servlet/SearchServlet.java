@@ -28,8 +28,6 @@ public class SearchServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
-    	// ここに必要な処理を記述してください。
     	String str = "見つかりませんでした";
     	String english = request.getParameter("english");
     	Dictionary dictionary = new Dictionary();

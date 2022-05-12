@@ -14,10 +14,8 @@ public class Dictionary {
 
 
     public Dictionary() {
-
     	dictionaryInfo = new HashMap<String, String>();
-    	
-    	// ここに英単語情報を登録する処理を記述してください。
+
     	dictionaryInfo.put("apple", "りんご");
     	dictionaryInfo.put("orange", "みかん");
     	dictionaryInfo.put("peach", "もも");
