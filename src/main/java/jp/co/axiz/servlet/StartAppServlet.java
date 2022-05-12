@@ -1,4 +1,4 @@
-
+package jp.co.axiz.servlet;
 
 import java.io.IOException;
 
@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import app.CardGameApp;
-import app.ClockApp;
-import app.DartsGameApp;
-import app.GameApp;
+import jp.co.axiz.app.App;
+import jp.co.axiz.app.CardGameApp;
+import jp.co.axiz.app.ClockApp;
+import jp.co.axiz.app.DartsGameApp;
+import jp.co.axiz.app.GameApp;
 
 /**
  * Servlet implementation class StartAppServlet
@@ -45,28 +46,45 @@ public class StartAppServlet extends HttpServlet {
 	    String itemStr = "";
 	    String result = "";
 	    
+	    App app = null;
 	    if("card".equals(item)) {
-	    	itemStr = "トラン";
+	    	itemStr = "トランプ";
+	    	app = new CardGameApp(itemStr);
 	    }else if("darts".equals(item)) {
 	    	itemStr = "ダーツ";
+	    	app = new DartsGameApp(itemStr);
+	    }else if("clock".equals(item)) {
+	    	app = new ClockApp();
 	    }
 	    
-	    GameApp cardGameApp = new CardGameApp(itemStr);
-	    GameApp dartsGameApp = new DartsGameApp(itemStr);
-	    ClockApp clockApp = new ClockApp();
-	    
-	    if (name != null && !name.isEmpty()) {
-	    	if(item.equals("card")) {
-	    		result = cardGameApp.start(name);
-		    }else if(item.equals("darts")) {
-		    	result = dartsGameApp.start(name);
-		    }else if(item.equals("clock")) {
-		    	result = clockApp.start(name);
+//	    GameApp cardGameApp = new CardGameApp(itemStr);
+//	    GameApp dartsGameApp = new DartsGameApp(itemStr);
+//	    ClockApp clockApp = new ClockApp();
+	    if(app instanceof GameApp) {
+	    	if (name != null && !name.isEmpty()) {
+		    	if(item.equals("card")) {
+		    		result = app.start(name);
+			    }else if(item.equals("darts")) {
+			    	result = app.start(name);
+			    }
+		    	GameApp gameApp = (GameApp)app;
+		    	request.setAttribute("playTime", "実行時間:" + gameApp.getNum() + "分");
+		    }
+	    }else {
+	    	if(item.equals("clock")) {
+		    	result = app.start(name);
 		    }else {
 		    	result = "アプリの実行に失敗しました。";
 		    }
-	    	
 	    }
+//	    if (name != null && !name.isEmpty()) {
+//	    	if(item.equals("card")) {
+//	    		result = app.start(name);
+//		    }else if(item.equals("darts")) {
+//		    	result = app.start(name);
+//		    }else 
+//	    	
+//	    }
 	    request.setAttribute("result", result);
 	    request.getRequestDispatcher("/appStart.jsp").forward(request, response);
 	}

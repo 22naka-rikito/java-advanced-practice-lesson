@@ -1,7 +1,8 @@
-package app;
+package jp.co.axiz.app;
 
 public abstract class GameApp implements App{
-	String item;
+	private String item;
+	private int playTime;
 	
 	public GameApp() {
 		
@@ -11,11 +12,19 @@ public abstract class GameApp implements App{
 		this.item = item;
 	}
 	
-	public abstract String play();
+	protected abstract String play();
 	
 	public String start(String name) {
 		String str = name + "さんと" + this.item + "でゲームを開始します。";
 		str += play();
 		return str;
+	}
+	
+	public void setNum(int playTime) {
+		this.playTime = playTime;
+	}
+	
+	public int getNum() {
+		return this.playTime;
 	}
 }
