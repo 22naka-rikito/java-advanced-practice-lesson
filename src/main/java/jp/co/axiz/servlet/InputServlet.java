@@ -57,7 +57,8 @@ public class InputServlet extends HttpServlet {
     		path = "input.jsp";
     		request.setAttribute("result", "未入力の項目があります。");
     	}else {
-    		car = new Car(carName, bodyColor, Integer.parseInt(maxSpeed));
+    		car = new Car(carName, bodyColor, 0);
+    		car.setMaxSpeed(Integer.parseInt(maxSpeed));
     		historyList.add(car);
     		HttpSession session = request.getSession();
     		session.setAttribute("historyList", historyList);
