@@ -20,7 +20,8 @@ public class Car {
 		this.carName = carName;
 		this.bodyColor = bodyColor;
 		this.maxSpeed = maxSpeed;
-		this.speed = speed;
+		this.setSpeed(speed);
+//		this.speed = speed;
 	}
 	
 	public String getCarName() {
@@ -57,7 +58,7 @@ public class Car {
 	}
 	
 	public void setSpeed(int speed) {
-		if(speed <= this.maxSpeed) {
+		if(speed <= this.maxSpeed && speed >= 0) {
 			this.speed = speed;
 		}else {
 			System.out.println("現在速度にこの値(" + speed + ")はセットすることはできません");

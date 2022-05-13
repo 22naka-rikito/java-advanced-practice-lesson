@@ -92,15 +92,14 @@ body {
            履歴の情報(車体の色と現在速度)を表示する
 
       -->
-			<c:forEach var="car" items="${historyList} ">
+			<c:forEach var="car" items="${historyList}">
 				<tr>
-					<td>車体の色を表示</td>
-					<td>現在速度を表示</td>
+					<td>${car.getBodyColor()}</td>
+					<td>${car.getSpeed()}</td>
+<%-- 					<td>${car}</td> --%>
+<%-- 					<td>${latestCar}</td> --%>
 				</tr>
 			</c:forEach>
-
-
-
 
 		</table>
 	</div>
